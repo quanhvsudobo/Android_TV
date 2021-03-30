@@ -28,7 +28,7 @@ export default class TwitterCallback extends Vue {
       }
     }
 
-    router.replace('/')
+    router.replace('/loginsuccess')
   }
 }
 </script>
