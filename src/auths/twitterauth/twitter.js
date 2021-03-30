@@ -84,4 +84,21 @@ twitter.login = function () {
     );
 }
 
+twitter.home_timeline = function (data) {
+    cb.__call(
+        "statuses/home_timeline",
+        {},
+        function (reply, rate, err) {
+            if (err) {
+                console.log("error response or timeout exceeded" + err.error);
+            }
+            if (reply) {
+                store.tweets.length = 0;
+                store.tweets.push(...reply);
+            }
+        }
+    );
+
+}
+
 export default twitter;

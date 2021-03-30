@@ -518,13 +518,17 @@
             var method = "";
             var param, i, j;
 
-            // replace _ by /
-            var path = fn.split("_");
-            for (i = 0; i < path.length; i++) {
-                if (i > 0) {
-                    method += "/";
-                }
-                method += path[i];
+            if(fn.indexOf('/') == -1) {
+              // replace _ by /
+              var path = fn.split("_");
+              for (i = 0; i < path.length; i++) {
+                  if (i > 0) {
+                      method += "/";
+                  }
+                  method += path[i];
+              }
+            } else {
+              method = fn;
             }
 
             // undo replacement for URL parameters

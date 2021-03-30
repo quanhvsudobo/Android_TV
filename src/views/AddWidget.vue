@@ -8,6 +8,24 @@
     >
       <ic-plus-solid width="100" height="100" />
     </div>
+
+    <h2>Home timelines api</h2>
+    <table width="90%" class="table table-striped ">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">User's name</th>
+          <th scope="col">Content</th>
+          <th scope="col">Created</th>
+        </tr>
+      </thead>
+      <tr :value="index" v-for="(item, index) in home_timelines" :key="index">
+        <td>{{index + 1}}</td>
+        <td>User's name</td>
+        <td v-html='item.text'></td>
+        <td>{{item.created_at}}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -15,6 +33,9 @@
 import { Component, Prop, PropSync, Ref, Vue } from "vue-property-decorator";
 import icPlusSolid from "@/components/icons/icPlusSolid.vue";
 import router from "@/router/index";
+import twitter from "@/auths/twitterauth/twitter";
+import store from "@/auths/twitterauth/store";
+
 let axios = require('axios');
 
 @Component({
@@ -24,22 +45,16 @@ let axios = require('axios');
 })
 export default class AddWidget extends Vue {
   @Prop() message!: string;
-  message: string = "";
+  data () {
+    return {
+      home_timelines: [],
+    }
+  }
 
   async mounted() {
-    var oauth_token = localStorage.getItem('oauth_token');
-    var oauth_verifier = localStorage.getItem('oauth_verifier');
-    console.log(oauth_token);
-    console.log(oauth_verifier);
-    var request_params = {
-        method: 'get',
-        url: 'https://api.twitter.com/1.1/statuses/home_timeline.json',
-        headers: {
-            'Authorization': 'OAuth oauth_consumer_key="XpIvxPsGknYOk8N8RZnKxq7hc", oauth_nonce="768766333454385152-0W0QrTgxLHCw1OqhXiFSJACM7fulAsD", oauth_signature="OAUTH_SIGNATURE", oauth_signature_method="HMAC-SHA1", oauth_timestamp="'+ (Date.now() - 6000) +'", oauth_token="768766333454385152-0W0QrTgxLHCw1OqhXiFSJACM7fulAsD", oauth_version="1.0"'
-        }
-    };
-    var res = await axios(request_params);
-    console.log(res);
+    twitter.home_timeline();
+    this.home_timelines = store.tweets;
+    console.log(store.tweets);
   }
 
   navigateTo() {
@@ -63,5 +78,22 @@ li {
 }
 a {
   color: #42b983;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
 }
 </style>
