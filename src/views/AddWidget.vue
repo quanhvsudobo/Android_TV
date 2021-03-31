@@ -12,6 +12,13 @@
       />
     </v-btn>
 
+    <v-btn
+      depressed
+      color="error"
+    >
+      Error
+    </v-btn>
+
     <h2 v-if="home_timelines.length">Home timelines api</h2>
     <table width="90%" class="table table-striped" v-if="home_timelines.length">
       <thead class="thead-light">
