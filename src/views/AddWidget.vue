@@ -1,33 +1,32 @@
 <template>
-  <div class="fl-v-aic">
-    <h2>{{ message }}</h2>
-    <div
-      id="addButton"
-      v-on:click="navigateTo"
-    >
-      <ic-plus-solid width="100" height="100" />
-    </div>
+  <v-container fluid grid-list-lg>
+    <div class="fl-v-aic">
+      <h2>{{ message }}</h2>
+      <div
+        id="addButton"
+        v-on:click="navigateTo"
+      >
+        <ic-plus-solid width="100" height="100" />
+      </div>
 
-    <div v-if="home_timelines.length">
-      <h2>Home timelines api</h2>
-      <table width="90%" class="table table-striped ">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">User's name</th>
-            <th scope="col">Content</th>
-            <th scope="col">Created</th>
-          </tr>
-        </thead>
-        <tr :value="index" v-for="(item, index) in home_timelines" :key="index">
-          <td>{{index + 1}}</td>
-          <td>User's name</td>
-          <td v-html='item.text'></td>
-          <td>{{item.created_at}}</td>
-        </tr>
-      </table>
+      <div v-if="home_timelines.length">
+        <h2 class="text-center">Home timelines api</h2>
+
+        <v-data-table
+          :headers="headers"
+          :items="home_timelines"
+          :items-per-page="10"
+          class="elevation-1"
+        >
+          <template v-slot:item.home_timelines="{ item }">
+            <v-chip dark>
+              {{home_timelines.map(function(x) {return x.id; }).indexOf(item.id)}}
+            </v-chip>
+          </template>
+        </v-data-table>
+      </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -48,6 +47,12 @@ export default class AddWidget extends Vue {
   @Prop() message!: string;
 
   private home_timelines: any = [];
+  private headers: any = [
+    { text: "ID", value: 'id' },
+    { text: "User's name", value: 'name' },
+    { text: 'Content', value: 'text' },
+    { text: 'Created', value: 'created_at' },
+  ];
 
   async mounted() {
     twitter.home_timeline();
@@ -92,5 +97,9 @@ th {
   text-align: left;
   background-color: #4CAF50;
   color: white;
+}
+
+.text-center {
+  text-align: center;
 }
 </style>
