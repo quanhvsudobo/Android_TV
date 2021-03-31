@@ -79,7 +79,7 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: #ddd;
 }
 
 td, th {
@@ -87,15 +87,14 @@ td, th {
   padding: 8px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2;}
+tr:nth-child(even){background-color: #f2f2f24f;}
 
-tr:hover {background-color: #ddd;}
+tr:hover {background-color: rgba(221, 221, 221, 0.048);}
 
 th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
+  text-align: left;  
   color: white;
 }
 
