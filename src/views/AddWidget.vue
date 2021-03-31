@@ -12,23 +12,65 @@
       />
     </v-btn>
 
+    <v-btn
+      depressed
+      color="error"
+    >
+      Error
+    </v-btn>
+
     <h2 v-if="home_timelines.length">Home timelines api</h2>
-    <table width="90%" class="table table-striped" v-if="home_timelines.length">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">TweetId</th>
-          <th scope="col">User's name</th>
-          <th scope="col">Content</th>
-          <th scope="col">Created</th>
-        </tr>
-      </thead>
-      <tr :value="index" v-for="(item, index) in home_timelines" :key="index">
-        <td>{{ item.id }}</td>
-        <td>{{ item.user.name }}</td>
-        <td v-html="item.text"></td>
-        <td>{{ item.created_at }}</td>
-      </tr>
-    </table>
+    <v-container class="twitter-content">
+      <v-row>
+        <v-list three-line>
+          <template v-for="(item, index) in home_timelines">
+            <v-list-item
+              :key="item.id"
+            >
+              <v-list-item-avatar size='50' rounded="false">
+                <v-img :src="item.user.profile_image_url"></v-img>
+              </v-list-item-avatar>
+
+              <v-list-item-content>
+                <v-list-item-title>
+                  <v-row>
+                    <v-col col='10'>
+                      <b>{{item.user.name}}</b> <span class="screen_name">@{{item.user.screen_name}}</span>
+                    </v-col>
+                    <v-col col='2' d-flex align="end" justify="end" ><span class="time">6h</span></v-col>
+                  </v-row>
+                </v-list-item-title>
+                <v-list-item-subtitle v-html="item.text"></v-list-item-subtitle>
+                <v-list-item-subtitle>
+                  <v-row class="mt-2">
+                    <v-col col='4'>
+                      <span d-flex align="start" justify="start" class="subheading mr-2">Expand</span>
+                    </v-col>
+                    <v-col col='8' d-flex align="end" justify="end" class="tweets-actions">
+                      <i class="mr-1 fas fa-reply"></i>
+                      <span class="subheading mr-2">Reply</span>
+
+                      <i class="mr-1 fas fa-retweet"></i>
+                      <span class="subheading mr-2">Retweet</span>
+
+                      <i class="mr-1 fas fa-star"></i>
+                      <span class="subheading mr-2">Favorite</span>
+
+                      <span class="mr-1">·</span>
+                      <i class="mr-1 fas fa-ellipsis-h"></i>
+                      <span class="subheading">More</span>
+                    </v-col>
+                  </v-row>
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-divider
+              :key="index"
+            ></v-divider>
+          </template>
+        </v-list>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -66,6 +108,7 @@ export default class AddWidget extends Vue {
   async mounted() {
     twitter.home_timeline();
     this.home_timelines = store.tweets;
+    console.log(this.home_timelines);
   }
 
   navigateTo() {
@@ -76,6 +119,32 @@ export default class AddWidget extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.v-sheet.v-card {
+  border-radius: unset !important;
+}
+
+.v-avatar {
+  border-radius: unset !important;
+}
+
+.twitter-content {
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.twitter-content .tweets-actions {
+  color: #b7b2b2;
+}
+
+.twitter-content .screen_name {
+  color: #b7b2b2;
+}
+
+.twitter-content .time {
+  color: #b7b2b2;
+}
+
 h3 {
   margin: 40px 0 0;
 }
