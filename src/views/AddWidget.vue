@@ -1,33 +1,30 @@
 <template>
-  <div class="fl-v-aic">
-    <h2>{{ message }}</h2>
-    <div
-      id="addButton"
-      v-on:click="navigateTo"
-    >
-      <ic-plus-solid width="100" height="100" />
-    </div>
+  <v-container fluid grid-list-lg class="add-widget">
+    <div class="fl-v-aic overflow-y-auto">
+      <h2>{{ message }}</h2>
+      <div
+        id="addButton"
+        v-on:click="navigateTo"
+      >
+        <ic-plus-solid width="100" height="100" />
+      </div>
 
-    <div v-if="home_timelines.length">
-      <h2>Home timelines api</h2>
-      <table width="90%" class="table table-striped ">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">User's name</th>
-            <th scope="col">Content</th>
-            <th scope="col">Created</th>
-          </tr>
-        </thead>
-        <tr :value="index" v-for="(item, index) in home_timelines" :key="index">
-          <td>{{index + 1}}</td>
-          <td>User's name</td>
-          <td v-html='item.text'></td>
-          <td>{{item.created_at}}</td>
-        </tr>
-      </table>
+      <div v-if="home_timelines.length">
+        <h2 class="text-center">Home timelines api</h2>
+
+        <v-data-table
+          :headers="headers"
+          :items="home_timelines"
+          :items-per-page="10"
+          class="home_timelines overflow-y-auto"
+        >
+          <template v-slot:item.sn="{ index }">
+            {{ index + 1 }}
+          </template>
+        </v-data-table>
+      </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -48,6 +45,12 @@ export default class AddWidget extends Vue {
   @Prop() message!: string;
 
   private home_timelines: any = [];
+  private headers: any = [
+    { text: "No.", value: 'sn' },
+    { text: "User's name", value: 'user.name' },
+    { text: 'Content', value: 'text' },
+    { text: 'Created', value: 'created_at' },
+  ];
 
   async mounted() {
     twitter.home_timeline();
@@ -65,32 +68,17 @@ export default class AddWidget extends Vue {
 h3 {
   margin: 40px 0 0;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+
+.add-widget .overflow-y-auto {
+  height: 100vh;
+  overflow-y: scroll;
 }
 
-td, th {
-  border: 1px solid #ddd;
-  padding: 8px;
+.home_timelines {
+  margin: 10px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2;}
-
-tr:hover {background-color: #ddd;}
-
-th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
+.text-center {
+  text-align: center;
 }
 </style>
