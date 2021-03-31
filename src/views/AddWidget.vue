@@ -5,12 +5,12 @@
       <ic-plus-solid width="100" height="100" />
     </div> -->
 
-    <div class="primary-button" v-on:click="navigateTo">
+    <v-btn class="mx-4" fab dark color="indigo" v-on:click="navigateTo">
       <i
         v-bind:class="[activeClass, errorClass]"
         style="width: 50px; height: 50px"
       />
-    </div>
+    </v-btn>
 
     <h2 v-if="home_timelines.length">Home timelines api</h2>
     <table width="90%" class="table table-striped" v-if="home_timelines.length">
