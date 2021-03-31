@@ -2,30 +2,31 @@
   <div class="fl-v-aic">
     <h2>{{ message }}</h2>
     <div
-      v-focus
       id="addButton"
       v-on:click="navigateTo"
     >
       <ic-plus-solid width="100" height="100" />
     </div>
 
-    <h2>Home timelines api</h2>
-    <table width="90%" class="table table-striped ">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">User's name</th>
-          <th scope="col">Content</th>
-          <th scope="col">Created</th>
+    <div v-if="home_timelines.length">
+      <h2>Home timelines api</h2>
+      <table width="90%" class="table table-striped ">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">User's name</th>
+            <th scope="col">Content</th>
+            <th scope="col">Created</th>
+          </tr>
+        </thead>
+        <tr :value="index" v-for="(item, index) in home_timelines" :key="index">
+          <td>{{index + 1}}</td>
+          <td>User's name</td>
+          <td v-html='item.text'></td>
+          <td>{{item.created_at}}</td>
         </tr>
-      </thead>
-      <tr :value="index" v-for="(item, index) in home_timelines" :key="index">
-        <td>{{index + 1}}</td>
-        <td>User's name</td>
-        <td v-html='item.text'></td>
-        <td>{{item.created_at}}</td>
-      </tr>
-    </table>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -45,16 +46,12 @@ let axios = require('axios');
 })
 export default class AddWidget extends Vue {
   @Prop() message!: string;
-  data () {
-    return {
-      home_timelines: [],
-    }
-  }
+
+  private home_timelines: any = [];
 
   async mounted() {
     twitter.home_timeline();
     this.home_timelines = store.tweets;
-    console.log(store.tweets);
   }
 
   navigateTo() {
