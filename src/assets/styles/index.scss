@@ -189,17 +189,16 @@ h4 {
 .primary-button {
   border-radius: 10px;
   padding: 1em 1.5em;
-  background-color: $tundora;
-  color: $mercury;
+  background-color: rgba(255, 255, 255, 0.322);
+  color: white;
   font-family: $teleneo-medium;
-
   outline: none;
   border: 0;
   font-size: 1em;
 
   &:focus {
-    background-color: $mercury;
-    color: $cod;
+    background-color: white;
+    color: white;
   }
 }
 
