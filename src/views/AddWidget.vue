@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid grid-list-lg>
-    <div class="fl-v-aic">
+  <v-container fluid grid-list-lg class="add-widget">
+    <div class="fl-v-aic overflow-y-auto">
       <h2>{{ message }}</h2>
       <div
         id="addButton"
@@ -16,12 +16,10 @@
           :headers="headers"
           :items="home_timelines"
           :items-per-page="10"
-          class="elevation-1"
+          class="home_timelines overflow-y-auto"
         >
-          <template v-slot:item.home_timelines="{ item }">
-            <v-chip dark>
-              {{home_timelines.map(function(x) {return x.id; }).indexOf(item.id)}}
-            </v-chip>
+          <template v-slot:item.sn="{ index }">
+            {{ index + 1 }}
           </template>
         </v-data-table>
       </div>
@@ -48,8 +46,8 @@ export default class AddWidget extends Vue {
 
   private home_timelines: any = [];
   private headers: any = [
-    { text: "ID", value: 'id' },
-    { text: "User's name", value: 'name' },
+    { text: "No.", value: 'sn' },
+    { text: "User's name", value: 'user.name' },
     { text: 'Content', value: 'text' },
     { text: 'Created', value: 'created_at' },
   ];
@@ -70,32 +68,18 @@ export default class AddWidget extends Vue {
 h3 {
   margin: 40px 0 0;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #ddd;
+
+.add-widget .overflow-y-auto {
+  height: 100vh;
+  overflow-y: scroll;
 }
 
-td, th {
-  border: 1px solid #ddd;
-  padding: 8px;
+.home_timelines {
+  margin: 10px;
 }
 
-tr:nth-child(even){background-color: #f2f2f24f;}
-
-tr:hover {background-color: rgba(221, 221, 221, 0.048);}
-
-th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;  
-  color: white;
+.text-center {
+  text-align: center;
 }
 
 .text-center {
