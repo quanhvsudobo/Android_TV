@@ -26,40 +26,40 @@
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title>
-                  <v-row>
-                    <v-col col='10'>
-                      <b>{{item.user.name}}</b> <span class="screen_name">@{{item.user.screen_name}}</span>
-                    </v-col>
-                    <v-col col='2' d-flex align="end" justify="end" ><span class="time">{{passedTime()}}</span></v-col>
-                  </v-row>
+                <v-list-item-title class="tweets-title">
+                  <b>{{item.user.name}}</b> 
+                  <span class="screen_name">@{{item.user.screen_name}}</span> 
+                  <span>&#183;</span>
+                  <span class="time">{{passedTime()}}</span>
                 </v-list-item-title>
                 <v-list-item-subtitle v-html="item.text"></v-list-item-subtitle>
                 <v-list-item-subtitle>
                   <v-row class="mt-2">
-                    <v-col col='4'>
+<!--                     <v-col col='4'>
                       <span d-flex align="start" justify="start" class="subheading mr-2">Expand</span>
-                    </v-col>
-                    <v-col col='8' d-flex align="end" justify="end" class="tweets-actions">
+                    </v-col> -->
+                    <v-col col='3' d-flex align="start" justify="start" class="tweets-actions">
                       <span class="twitter-reply">
-                        <i class="mr-1 fas fa-reply"></i>
-                        <span class="subheading mr-2">Reply</span>
+                        <i class="mr-1 fas fa-comment"></i>
+                        <span class="subheading mr-2">0</span>
                       </span>
-
+                    </v-col>
+                    <v-col col='3' d-flex align="start" justify="start" class="tweets-actions">
                       <span class="twitter-retweet">
                         <i class="mr-1 fas fa-retweet"></i>
-                        <span class="subheading mr-2">Retweet</span>
+                        <span class="subheading mr-2">{{ item.retweet_count }}</span>
                       </span>
-
+                    </v-col>
+                    <v-col col='3' d-flex align="start" justify="start" class="tweets-actions">
                       <span class="twitter-favorite">
-                        <i class="mr-1 fas fa-star"></i>
-                        <span class="subheading mr-2">Favorite</span>
+                        <i class="mr-1 fas fa-heart"></i>
+                        <span class="subheading mr-2">{{item.favorite_count}}</span>
                       </span>
-
+                    </v-col>
+                    <v-col col='3' d-flex align="start" justify="start" class="tweets-actions">
                       <span class="twitter-ellipsis">
                       <!-- <span class="mr-1">·</span> -->
-                        <i class="mr-1 fas fa-ellipsis-h"></i>
-                        <span class="subheading">More</span>
+                        <i class="mr-1 fas fa fa-upload"></i>
                       </span>
                     </v-col>
                   </v-row>
@@ -130,20 +130,16 @@ export default class AddWidget extends Vue {
   border-radius: unset !important;
 }
 
-.v-avatar {
-  border-radius: unset !important;
-}
-
 .twitter-content .tweets-actions {
   color: #b7b2b2;
 }
 
 .twitter-content .screen_name {
-  color: #b7b2b2;
+  color: rgb(91, 112, 131);
 }
 
 .twitter-content .time {
-  color: #b7b2b2;
+  color: rgb(91, 112, 131);;
 }
 
 .twitter-content .tweet-item-list:hover {
@@ -165,4 +161,14 @@ export default class AddWidget extends Vue {
 .tweets-actions .twitter-ellipsis:hover {
   color: #0b1bf5;
 }
+
+.tweets-actions span {
+  width: 25%;
+}
+
+.twitter-content .tweets-title span {
+  color: #0b1bf5;
+  margin-left: 5px;
+}
+
 </style>
