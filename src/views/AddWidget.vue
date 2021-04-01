@@ -26,6 +26,7 @@
           <template v-for="(item, index) in home_timelines">
             <v-list-item
               :key="item.id"
+              class='tweet-item-list'
             >
               <v-list-item-avatar size='50' rounded="false">
                 <v-img :src="item.user.profile_image_url"></v-img>
@@ -37,7 +38,7 @@
                     <v-col col='10'>
                       <b>{{item.user.name}}</b> <span class="screen_name">@{{item.user.screen_name}}</span>
                     </v-col>
-                    <v-col col='2' d-flex align="end" justify="end" ><span class="time">6h</span></v-col>
+                    <v-col col='2' d-flex align="end" justify="end" ><span class="time">{{passedTime(item.created_at)}}</span></v-col>
                   </v-row>
                 </v-list-item-title>
                 <v-list-item-subtitle v-html="item.text"></v-list-item-subtitle>
@@ -47,18 +48,26 @@
                       <span d-flex align="start" justify="start" class="subheading mr-2">Expand</span>
                     </v-col>
                     <v-col col='8' d-flex align="end" justify="end" class="tweets-actions">
-                      <i class="mr-1 fas fa-reply"></i>
-                      <span class="subheading mr-2">Reply</span>
+                      <span class="twitter-reply">
+                        <i class="mr-1 fas fa-reply"></i>
+                        <span class="subheading mr-2">Reply</span>
+                      </span>
 
-                      <i class="mr-1 fas fa-retweet"></i>
-                      <span class="subheading mr-2">Retweet</span>
+                      <span class="twitter-retweet">
+                        <i class="mr-1 fas fa-retweet"></i>
+                        <span class="subheading mr-2">Retweet</span>
+                      </span>
 
-                      <i class="mr-1 fas fa-star"></i>
-                      <span class="subheading mr-2">Favorite</span>
+                      <span class="twitter-favorite">
+                        <i class="mr-1 fas fa-star"></i>
+                        <span class="subheading mr-2">Favorite</span>
+                      </span>
 
-                      <span class="mr-1">·</span>
-                      <i class="mr-1 fas fa-ellipsis-h"></i>
-                      <span class="subheading">More</span>
+                      <span class="twitter-ellipsis">
+                      <!-- <span class="mr-1">·</span> -->
+                        <i class="mr-1 fas fa-ellipsis-h"></i>
+                        <span class="subheading">More</span>
+                      </span>
                     </v-col>
                   </v-row>
                 </v-list-item-subtitle>
@@ -114,6 +123,11 @@ export default class AddWidget extends Vue {
   navigateTo() {
     router.push("appslist");
   }
+
+  passedTime(time) {
+    // TODO get time form twitter
+    return '6h';
+  }
 }
 </script>
 
@@ -125,12 +139,6 @@ export default class AddWidget extends Vue {
 
 .v-avatar {
   border-radius: unset !important;
-}
-
-.twitter-content {
-  max-width: 50%;
-  display: flex;
-  justify-content: center;
 }
 
 .twitter-content .tweets-actions {
@@ -145,35 +153,23 @@ export default class AddWidget extends Vue {
   color: #b7b2b2;
 }
 
-h3 {
-  margin: 40px 0 0;
+.twitter-content .tweet-item-list:hover {
+  background-color: rgba(0,0,0,0.03);
 }
 
-td,
-th {
-  border: 1px solid #ddd;
-  padding: 8px;
+.tweets-actions .twitter-retweet:hover {
+  color: rgb(244, 36, 94);
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f24f;
+.tweets-actions .twitter-reply:hover {
+  color: #0b1bf5;
 }
 
-tr:hover {
-  background-color: rgba(221, 221, 221, 0.048);
+.tweets-actions .twitter-favorite:hover {
+  color: #f3ae2c;
 }
 
-th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  color: white;
-}
-.item-inner {
-  max-width: 100%;
-  max-height: 100%;
-  width: 200px;
-  height: 200px;
-  background-color: rgba(255, 255, 255, 0.082);
+.tweets-actions .twitter-ellipsis:hover {
+  color: #0b1bf5;
 }
 </style>
