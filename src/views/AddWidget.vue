@@ -12,13 +12,6 @@
       />
     </v-btn>
 
-    <v-btn
-      depressed
-      color="error"
-    >
-      Error
-    </v-btn>
-
     <h2 v-if="home_timelines.length">Home timelines api</h2>
     <v-container class="twitter-content">
       <v-row>
@@ -38,7 +31,7 @@
                     <v-col col='10'>
                       <b>{{item.user.name}}</b> <span class="screen_name">@{{item.user.screen_name}}</span>
                     </v-col>
-                    <v-col col='2' d-flex align="end" justify="end" ><span class="time">{{passedTime(item.created_at)}}</span></v-col>
+                    <v-col col='2' d-flex align="end" justify="end" ><span class="time">{{passedTime()}}</span></v-col>
                   </v-row>
                 </v-list-item-title>
                 <v-list-item-subtitle v-html="item.text"></v-list-item-subtitle>
@@ -124,7 +117,7 @@ export default class AddWidget extends Vue {
     router.push("appslist");
   }
 
-  passedTime(time) {
+  passedTime() {
     // TODO get time form twitter
     return '6h';
   }
