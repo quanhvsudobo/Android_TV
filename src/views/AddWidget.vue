@@ -126,6 +126,14 @@ export default class AddWidget extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.theme--light.v-application {
+  width: $app-width !important;
+  max-width: $app-width !important;
+  height: $app-height !important;
+  max-height: $app-height !important;
+  margin: $app-margin !important;
+  padding: $app-padding !important;
+}
 .v-sheet.v-card {
   border-radius: unset !important;
 }

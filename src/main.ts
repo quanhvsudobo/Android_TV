@@ -5,9 +5,16 @@ import router from "./router";
 import VWave from "v-wave";
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-import '@fortawesome/fontawesome-free/css/all.css'
-import '@fortawesome/fontawesome-free/js/all.js'
-import vuetify from '@/plugins/vuetify' 
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/js/all.js';
+import vuetify from '@/plugins/vuetify';
+import vjsn from "vue-js-spatial-navigation";
+
+import store from "./store";
+
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.use(VWave, VueAxios, axios);
 
@@ -17,6 +24,8 @@ const spatialCfg = {
 
 Vue.config.productionTip = false;
 
+Vue.use(vjsn, spatialCfg);
+
 //VueRouter Instance
 const myRouter: VueRouter = router;
 
@@ -24,5 +33,6 @@ const myRouter: VueRouter = router;
 const app = new Vue({
   router: myRouter,
   vuetify: vuetify,
+  store: store,
   render: (h) => h(App),
 }).$mount("#app");
