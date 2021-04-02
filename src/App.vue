@@ -4,9 +4,9 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
-    <div class="app-sizing">
+    <!-- <div class="app-sizing"> -->
       <router-view />
-    </div>
+    <!-- </div> -->
   </v-app>
 </template>
 
