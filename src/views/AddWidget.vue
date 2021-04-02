@@ -6,12 +6,12 @@
     </div> -->
 
     <div class="edit-add">
-        <div class="operation-buttons">
-          <div class="addBtn oval" v-focus v-on:click="navigateTo"></div>
-        </div>
+      <div class="operation-buttons">
+        <div class="addBtn oval" v-focus v-on:click="navigateTo"></div>
       </div>
+    </div>
 
-    <h2 v-if="home_timelines.length">Home timelines api</h2>
+    <h2 v-if="home_timelines.length">Twitter Timelines</h2>
     <v-container class="twitter-content mt-2">
       <v-row>
         <v-list three-line>
@@ -191,6 +191,8 @@ export default class AddWidget extends Vue {
   background-image: url("/images/icon-action-add-default.svg");
   background-repeat: no-repeat;
   background-position: center;
+  margin-bottom: 35px;
+  margin-top: 35px;
 }
 
 .addBtn:hover {
