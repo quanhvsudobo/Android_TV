@@ -5,12 +5,11 @@
       <ic-plus-solid width="100" height="100" />
     </div> -->
 
-    <v-btn class="mx-4" fab dark color="indigo" v-on:click="navigateTo">
-      <i
-        v-bind:class="[activeClass, errorClass]"
-        style="width: 50px; height: 50px"
-      />
-    </v-btn>
+    <div class="edit-add">
+        <div class="operation-buttons">
+          <div class="addBtn oval" v-focus v-on:click="navigateTo"></div>
+        </div>
+      </div>
 
     <h2 v-if="home_timelines.length">Home timelines api</h2>
     <div class="twitter-content mt-2">
@@ -125,17 +124,19 @@ export default class AddWidget extends Vue {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.theme--light.v-application {
-  width: $app-width !important;
-  max-width: $app-width !important;
-  height: $app-height !important;
-  max-height: $app-height !important;
-  margin: $app-margin !important;
-  padding: $app-padding !important;
+<style lang="scss" scoped>
+.fl-v-aic::-webkit-scrollbar {
+  display: none;
 }
-.v-sheet.v-card {
-  border-radius: unset !important;
+
+.main-navigation {
+  margin-right: $nav-bar-margin-right;
+  width: $nav-bar-width;
+}
+
+.twitter-content .v-list {
+  font-size: 1.4em;
+  background-color: unset !important;
 }
 
 .twitter-content .tweets-actions {
@@ -150,8 +151,15 @@ export default class AddWidget extends Vue {
   color: rgb(91, 112, 131);;
 }
 
+.twitter-content .tweet-item-list {
+  border-radius: $border-radius;
+  background-color: #fff;
+  padding: 2em 2em 1em 2em;
+  margin-bottom: 2em;
+}
+
 .twitter-content .tweet-item-list:hover {
-  background-color: rgba(0,0,0,0.03);
+  background-color: #f7f9fa;
 }
 
 .tweets-actions .twitter-retweet:hover {
@@ -178,5 +186,30 @@ export default class AddWidget extends Vue {
   color: #0b1bf5;
   margin-left: 5px;
 }
+
+.addBtn {
+  background-image: url("/images/icon-action-add-default.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.addBtn:hover {
+  cursor: copy;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.oval {
+  width: 83px;
+  height: 83px;
+  padding: 0 0.2px 0.2px 0;
+  object-fit: contain;
+  border-radius: 50%;
+  border: solid 1.8px #ffffff;
+  &:focus {
+    border: solid 1.8px $magenta-color;
+    background-color: $magenta-color;
+  }
+}
+
 
 </style>
