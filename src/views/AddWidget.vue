@@ -13,7 +13,7 @@
     </v-btn>
 
     <h2 v-if="home_timelines.length">Home timelines api</h2>
-    <v-container class="twitter-content">
+    <div class="twitter-content mt-2">
       <v-row>
         <v-list three-line>
           <template v-for="(item, index) in home_timelines">
@@ -72,7 +72,7 @@
           </template>
         </v-list>
       </v-row>
-    </v-container>
+    </div>
   </div>
 </template>
 

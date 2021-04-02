@@ -2,23 +2,23 @@
   <div v-focus-section class="side-nav-menu">
     <router-link to="/" v-focus class="navigation-item">
       <img src="/images/icon-content-applications-default.svg" />
-      <p>Home</p>
+      <p>{{ $t("navigation.home") }}</p>
     </router-link>
     <router-link to="/feed" v-focus class="navigation-item">
       <img src="/images/icon_aktuell.svg" />
-      <p>Current</p>
+      <p>{{ $t("navigation.current") }}</p>
     </router-link>
     <router-link to="/widget-gallery" v-focus class="navigation-item">
       <img src="/images/icon_stories.svg" />
-      <p>stories</p>
+      <p>{{ $t("navigation.stories") }}</p>
     </router-link>
     <router-link to="/empty" v-focus class="navigation-item">
       <img src="/images/icons-ger-te.svg" />
-      <p>equipment</p>
+      <p>{{ $t("navigation.equipment") }}</p>
     </router-link>
     <router-link to="/empty" v-focus class="navigation-item">
       <img src="/images/icon_discover.svg" />
-      <p>discover</p>
+      <p>{{ $t("navigation.discover") }}</p>
     </router-link>
   </div>
 </template>

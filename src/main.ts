@@ -9,6 +9,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 import vuetify from '@/plugins/vuetify';
 import vjsn from "vue-js-spatial-navigation";
+import i18n from "./i18n";
 
 import store from "./store";
 
@@ -34,5 +35,6 @@ const app = new Vue({
   router: myRouter,
   vuetify: vuetify,
   store: store,
+  i18n: i18n,
   render: (h) => h(App),
 }).$mount("#app");
