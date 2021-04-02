@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="fl-v-aic">
     <h2 style="justify-content: center; display:flex; color:white;">Scan QR Code to authenticate via Twitter</h2>
     <div style=" justify-content: center; display:flex; flex-wrap: wrap;">
     <div style="justify-content: center; display:flex; padding:50px; background-color:#FFFFFF" id="goqrcode" />
