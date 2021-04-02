@@ -98,7 +98,11 @@ twitter.home_timeline = function (data) {
             }
         }
     );
+}
 
+twitter.logout = function () {
+  localStorage.removeItem('oauth_token');
+  store.tweets.length = 0;
 }
 
 export default twitter;

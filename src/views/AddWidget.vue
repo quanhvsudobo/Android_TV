@@ -11,7 +11,11 @@
       </div>
     </div>
 
-    <h2 class="mb-4" v-if="home_timelines.length">Twitter Timelines</h2>
+    <h2 class="mb-2" v-if="home_timelines.length">Twitter Timelines</h2>
+    <div v-on:click="twiterLogout()" >
+      <font-awesome-icon v-if="home_timelines.length" :icon="['fa', 'sign-out-alt']" style="font-size: 50px; cursor: pointer;" />
+    </div>
+
     <v-container class="twitter-content mt-4">
       <v-row>
         <v-list three-line>
@@ -75,10 +79,10 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { Component, Prop, PropSync, Ref, Vue } from "vue-property-decorator";
-import icPlusSolid from "@/components/icons/icPlusSolid.vue";
-import ItemApp from "@/components/items/ItemApp.vue";
+// import icPlusSolid from "@/components/icons/icPlusSolid.vue";
+// import ItemApp from "@/components/items/ItemApp.vue";
 
 import router from "@/router/index";
 import twitter from "@/auths/twitterauth/twitter";
@@ -86,41 +90,51 @@ import store from "@/auths/twitterauth/store";
 
 let axios = require("axios");
 
-@Component({
-  components: {
-    icPlusSolid,
-    ItemApp,
+export default {
+  data() {
+    return {
+      home_timelines: []
+    }
   },
-})
-export default class AddWidget extends Vue {
-  public activeClass = "fa";
-  public errorClass = "fa-plus";
-
-  @Prop() message!: string;
-
-  private home_timelines: any = [];
-  private headers: any = [
-    { text: "No.", value: 'sn' },
-    { text: "User's name", value: 'user.name' },
-    { text: 'Content', value: 'text' },
-    { text: 'Created', value: 'created_at' },
-  ];
-
+  components: {
+    // icPlusSolid,
+    // ItemApp
+  },
+  props: {
+    message: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    feed() {
+      return this.$store.getters.feed;
+    }
+  },
   async mounted() {
-    twitter.home_timeline();
-    this.home_timelines = store.tweets;
-    console.log(this.home_timelines);
-  }
+    // let oauth_token = await localStorage.getItem('oauth_token');
+    // if(oauth_token) {
+      await twitter.home_timeline();
+      this.home_timelines = [...store.tweets];
+    // }
+  },
+  methods: {
+    navigateTo() {
+      router.push("appslist");
+    },
 
-  navigateTo() {
-    router.push("appslist");
-  }
+    passedTime() {
+      // TODO get time form twitter
+      return '6h';
+    },
 
-  passedTime() {
-    // TODO get time form twitter
-    return '6h';
+    async twiterLogout() {
+      await twitter.logout();
+      this.home_timelines = [];
+    }
   }
-}
+};
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -212,6 +226,5 @@ export default class AddWidget extends Vue {
     background-color: $magenta-color;
   }
 }
-
 
 </style>
