@@ -12,7 +12,7 @@
     </div>
 
     <h2 class="mb-2" v-if="home_timelines.length">Twitter Timelines</h2>
-    <div v-on:click="twiterLogout()" >
+    <div @click="twiterLogout" >
       <font-awesome-icon v-if="home_timelines.length" :icon="['fa', 'sign-out-alt']" style="font-size: 50px; cursor: pointer;" />
     </div>
 
@@ -112,11 +112,11 @@ export default {
     }
   },
   async mounted() {
-    // let oauth_token = await localStorage.getItem('oauth_token');
-    // if(oauth_token) {
+    let oauth_verifier = await localStorage.getItem('oauth_verifier');
+    if(oauth_verifier) {
       await twitter.home_timeline();
       this.home_timelines = store.tweets;
-    // }
+    }
   },
   methods: {
     navigateTo() {
