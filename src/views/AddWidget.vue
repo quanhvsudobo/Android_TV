@@ -115,7 +115,7 @@ export default {
     // let oauth_token = await localStorage.getItem('oauth_token');
     // if(oauth_token) {
       await twitter.home_timeline();
-      this.home_timelines = [...store.tweets];
+      this.home_timelines = store.tweets;
     // }
   },
   methods: {
