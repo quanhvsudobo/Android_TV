@@ -2,17 +2,20 @@
   <div class="item-wrap" v-bind:class="{ 'no-style': noStyle }">
     <div class="item-inner">
       <div class="clickme" :style="{ color }" v-wave>
-          <div style="display: flex; justify-content: space-between; font-size:40px; padding-top:10px;">
+          <div style="display: flex; justify-content: space-between; font-size:40px; padding-top:25px; margin-bottom: 55px;">
             <i v-bind:class="[activeClass, errorClass]" aria-hidden="true" style="align-items: flex-start;"></i>
           </div>
           <div style="display: flex; justify-content: space-between;">
             <div class="clickme-text">
-              <p style="margin-top: 15px; margin-bottom: 20px;">{{ label }}</p>
+              <p style="margin-bottom: unset;">{{ label }}</p>
             </div>
             <div>
-              <p style="margin-top: 15px;  margin-bottom: 20px;"><i class="fa fa-angle-right"></i></p>
+              <p style="margin-bottom: unset;"><i class="fa fa-angle-right"></i></p>
             </div>
           </div>
+          <p style="font-size: 13px;
+    color: #ff00ea;
+    text-align: initial;">Aktiv</p>
       </div>
     </div>
   </div>
@@ -45,7 +48,7 @@ export default class ItemApp extends Vue {
   public errorClass = 'fa-' + this.icon
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .container {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -67,6 +70,7 @@ export default class ItemApp extends Vue {
 .item-inner {
   max-width: 100%;
   width: 200px;
+  height: 200px;
   position: relative;
 }
 .clickme {
@@ -75,12 +79,12 @@ export default class ItemApp extends Vue {
   background-color: rgba(255, 255, 255, 0.274);
   font-weight: bold;
   max-width: 100%;
-
+  height: 100%;
   font-size: 1.2em;
-  border-radius: 5px;
+  border-radius: $border-radius;
   margin: 20px auto;
-  padding-left:10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   cursor: pointer;
   user-select: none;
   position: relative !important;
@@ -119,7 +123,7 @@ export default class ItemApp extends Vue {
 .clickme:hover {
   /* opacity: 0.09; */
   /* background-color: white; */
-  background-color: rgba(255, 255, 255, 0.521);
+  background-color: rgba(255, 255, 255, 0.8);
   transition: 0.9s;
 }
 .clickme:active:before {
