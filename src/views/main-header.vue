@@ -76,7 +76,7 @@ export default {
       return new Intl.DateTimeFormat("de", { timeStyle: "short" }).format(this.date);
     },
     widgetIcon() {
-      return "/images/pet.svg";
+      return "/images/icon-alert-error-selected.svg";
     },
     ...mapGetters({
       data: {}

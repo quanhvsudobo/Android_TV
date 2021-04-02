@@ -9,9 +9,6 @@
 </template>
 
 <style lang="scss">
-  @import "@/assets/styles/_variables";
-  @import "@/assets/styles/index";
-
   .theme--light.v-application {
     background-color: unset !important;
     color: unset !important;

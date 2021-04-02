@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 // import Devices from "./devices";
-// import Feed from "./feed";
+import Feed from "./feed";
 // import Scenes from "./scenes";
 // import Weather from "./weather";
 // import Modal from "./modal";
@@ -25,7 +25,7 @@ export default new Vuex.Store({
     // Devices,
     // Scenes,
     // Weather,
-    // Feed,
+    Feed,
     // Modal,
     // Session,
     // HomeConfigurator,
