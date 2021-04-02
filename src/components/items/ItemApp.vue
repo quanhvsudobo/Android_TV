@@ -64,7 +64,7 @@ export default class ItemApp extends Vue {
   color: green;
 }
 .item-wrap {
-  padding: 0 20px;
+  padding: 0 5px;
   box-sizing: border-box;
 }
 .item-inner {
