@@ -11,8 +11,8 @@
       </div>
     </div>
 
-    <h2 v-if="home_timelines.length">Twitter Timelines</h2>
-    <v-container class="twitter-content mt-2">
+    <h2 class="mb-4" v-if="home_timelines.length">Twitter Timelines</h2>
+    <v-container class="twitter-content mt-4">
       <v-row>
         <v-list three-line>
           <template v-for="(item, index) in home_timelines">
