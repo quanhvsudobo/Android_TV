@@ -15,16 +15,18 @@ export default class TwitterCallback extends Vue {
   //oauth_token=P_xoCgAAAAABNlweAAABeF1NSfs
   //&oauth_verifier=YhI1H4qIy4Tu9e3SNCOSGZixXl7G6uOR
 
-  async mounted() {
+  mounted() {
     if (QueryString) {
       var queryObj = QueryString as any;
       if (queryObj.oauth_token && queryObj.oauth_verifier) {
-        await localStorage.setItem('oauth_token', queryObj.oauth_token);
-        await localStorage.setItem('oauth_verifier', queryObj.oauth_verifier);
+        localStorage.setItem('oauth_token', queryObj.oauth_token);
+        localStorage.setItem('oauth_verifier', queryObj.oauth_verifier);
       }
     }
 
-    window.location.href = '/';
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 1000);
   }
 }
 </script>

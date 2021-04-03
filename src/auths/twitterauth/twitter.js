@@ -1,5 +1,6 @@
 import QueryString from './querystring';
-import store from './store.js';
+import twiter_store from "./store";
+
 import Codebird from './codebird';
 
 var twitter = {};
@@ -93,8 +94,8 @@ twitter.home_timeline = function (data) {
                 console.log("error response or timeout exceeded" + err.error);
             }
             if (reply) {
-                store.tweets.length = 0;
-                store.tweets.push(...reply);
+                twiter_store.tweets.length = 0;
+                twiter_store.tweets.push(...reply);
             }
         }
     );
@@ -102,7 +103,7 @@ twitter.home_timeline = function (data) {
 
 twitter.logout = function () {
   localStorage.removeItem('oauth_verifier');
-  store.tweets.length = 0;
+  twiter_store.tweets.length = 0;
 }
 
 export default twitter;

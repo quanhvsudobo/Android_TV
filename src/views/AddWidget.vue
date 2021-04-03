@@ -86,7 +86,7 @@ import { Component, Prop, PropSync, Ref, Vue } from "vue-property-decorator";
 
 import router from "@/router/index";
 import twitter from "@/auths/twitterauth/twitter";
-import store from "@/auths/twitterauth/store";
+import twiter_store from "@/auths/twitterauth/store";
 
 let axios = require("axios");
 
@@ -115,7 +115,7 @@ export default {
     let oauth_verifier = await localStorage.getItem('oauth_verifier');
     if(oauth_verifier) {
       await twitter.home_timeline();
-      this.home_timelines = store.tweets;
+      this.home_timelines = twiter_store.tweets;
     }
   },
   methods: {
