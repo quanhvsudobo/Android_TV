@@ -11,6 +11,38 @@
       </div>
     </div>
 
+    <v-card class="mx-auto mb-4 user-information" max-width="60%" tile v-if="current_user">
+        <v-img height="100%" :src="current_user.profile_banner_url">
+          <v-row align="end" class="fill-height p-1">
+            <v-col align-self="start" class="pa-0 avatar" cols="2" md="2" sm="4">
+              <v-avatar color="" size="60" tile>
+                <v-img :src="current_user.profile_image_url"></v-img>
+              </v-avatar>
+            </v-col>
+            <v-col align-self="start" class="pa-0" cols="10" md="10" sm="8">
+              <v-list-item color="rgba(0, 0, 0, .4)" dark>
+                <v-list-item-content>
+                  <v-list-item-title class="title">{{current_user.name}} <span class="screen_name">(@{{current_user.screen_name}})</span></v-list-item-title>
+                  <v-list-item-subtitle>TwiterID: {{current_user.id}}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+
+              <div @click="twiterLogout" class="radius rounded pa-4 text-center logout-button text-no-wrap" v-if="home_timelines.length" >
+                <font-awesome-icon :icon="['fa', 'sign-out-alt']" style="font-size: 30px; cursor: pointer;" />
+              </div>
+            </v-col>
+            <v-col class="py-0">
+              <v-list-item color="rgba(0, 0, 0, .4)" dark>
+                <v-list-item-content>
+                  <!-- <v-list-item-title class="title">{{current_user.name}}</v-list-item-title> -->
+                  <!-- <v-list-item-title>TwiterID: {{current_user.id}}</v-list-item-title> -->
+                </v-list-item-content>
+              </v-list-item>
+            </v-col>
+          </v-row>
+        </v-img>
+      </v-card>
+
     <h2 class="mb-2" v-if="home_timelines.length">Twitter Timelines</h2>
 
     <v-container class="twitter-content mt-4">
@@ -73,9 +105,7 @@
         </v-list>
       </v-row>
       <v-row class="footer">
-        <div @click="twiterLogout" class="radius rounded pa-4 text-center logout-button text-no-wrap" v-if="home_timelines.length" >
-          <font-awesome-icon :icon="['fa', 'sign-out-alt']" style="font-size: 40px; cursor: pointer;" />
-        </div>
+        <!-- Footer here -->
       </v-row>
     </v-container>
   </div>
@@ -95,7 +125,8 @@ let axios = require("axios");
 export default {
   data() {
     return {
-      home_timelines: []
+      home_timelines: [],
+      current_user: null
     }
   },
   components: {
@@ -118,6 +149,10 @@ export default {
     if(oauth_verifier) {
       await twitter.home_timeline();
       this.home_timelines = twiter_store.tweets;
+      
+      await twitter.account_verify_credentials();
+      this.current_user = twiter_store.account_verify_credentials;
+      console.log('this.current_user', this.current_user);
     }
   },
   methods: {
@@ -133,6 +168,7 @@ export default {
     async twiterLogout() {
       await twitter.logout();
       this.home_timelines = [];
+      this.current_user = null;
     }
   }
 };
@@ -148,6 +184,26 @@ export default {
 .main-navigation {
   margin-right: $nav-bar-margin-right;
   width: $nav-bar-width;
+}
+
+.user-information .v-list-item__content div {
+  margin-right: 100px;
+  width: 50%;
+  background-color: rgba(0,0,0, 0.3);
+}
+
+.user-information .avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-information .avatar .v-image {
+  border-radius: 50%;
+}
+
+.user-information .screen_name {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .twitter-content .v-list {
@@ -233,12 +289,12 @@ export default {
   position: absolute;
   right: 10px;
   bottom: 10px;
-  background-color: rgba(255, 255, 255, 0.0);
+  background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .logout-button:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgb(241, 89, 194, 0.8);
 }
 
 .footer {

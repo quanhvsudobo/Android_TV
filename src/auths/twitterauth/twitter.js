@@ -101,8 +101,44 @@ twitter.home_timeline = function (data) {
     );
 }
 
+twitter.account_settings = function (data) {
+    cb.__call(
+        "account/settings",
+        {},
+        function (reply, rate, err) {
+            if (err) {
+                console.log("error response or timeout exceeded" + err.error);
+            }
+            if (reply) {
+                console.log(reply);
+                twiter_store.account_settings = reply;
+            }
+        }
+    );
+}
+
+twitter.account_verify_credentials = function (data) {
+  return new Promise(function(resolve, reject) {
+    cb.__call(
+        "account/verify_credentials",
+        {},
+        function (reply, rate, err) {
+            if (err) {
+                console.log("error response or timeout exceeded" + err.error);
+                reject(err);
+            }
+            if (reply) {
+                twiter_store.account_verify_credentials = reply;
+                resolve(reply);
+            }
+        }
+    );
+  });
+}
+
 twitter.logout = function () {
   localStorage.removeItem('oauth_verifier');
+  twiter_store.account_verify_credentials = null;
   twiter_store.tweets.length = 0;
 }
 
