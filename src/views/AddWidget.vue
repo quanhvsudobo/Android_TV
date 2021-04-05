@@ -12,36 +12,34 @@
     </div>
 
     <v-card class="mx-auto mb-4 user-information" max-width="60%" tile v-if="current_user">
-        <v-img height="100%" :src="current_user.profile_banner_url">
-          <v-row align="end" class="fill-height p-1">
-            <v-col align-self="start" class="pa-0 avatar" cols="2" md="2" sm="4">
-              <v-avatar color="" size="60" tile>
-                <v-img :src="current_user.profile_image_url"></v-img>
-              </v-avatar>
-            </v-col>
-            <v-col align-self="start" class="pa-0" cols="10" md="10" sm="8">
-              <v-list-item color="rgba(0, 0, 0, .4)" dark>
-                <v-list-item-content>
-                  <v-list-item-title class="title">{{current_user.name}} <span class="screen_name">(@{{current_user.screen_name}})</span></v-list-item-title>
-                  <v-list-item-subtitle>TwiterID: {{current_user.id}}</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
+      <v-row align="end" class="p-1">
+        <v-col align-self="start" class="pa-0 avatar" cols="2" md="2" sm="4">
+          <v-avatar color="" size="60" tile>
+            <v-img :src="current_user.profile_image_url"></v-img>
+          </v-avatar>
+        </v-col>
+        <v-col align-self="start" class="pa-0" cols="10" md="10" sm="8">
+          <v-list-item color="rgba(0, 0, 0, .4)" dark>
+            <v-list-item-content>
+              <v-list-item-title class="title">{{current_user.name}} <span class="screen_name">(@{{current_user.screen_name}})</span></v-list-item-title>
+              <v-list-item-subtitle>TwiterID: {{current_user.id}}</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
 
-              <div @click="twiterLogout" class="radius rounded pa-4 text-center logout-button text-no-wrap" v-if="home_timelines.length" >
-                <font-awesome-icon :icon="['fa', 'sign-out-alt']" style="font-size: 30px; cursor: pointer;" />
-              </div>
-            </v-col>
-            <v-col class="py-0">
-              <v-list-item color="rgba(0, 0, 0, .4)" dark>
-                <v-list-item-content>
-                  <!-- <v-list-item-title class="title">{{current_user.name}}</v-list-item-title> -->
-                  <!-- <v-list-item-title>TwiterID: {{current_user.id}}</v-list-item-title> -->
-                </v-list-item-content>
-              </v-list-item>
-            </v-col>
-          </v-row>
-        </v-img>
-      </v-card>
+          <div @click="twiterLogout" class="radius rounded pa-4 text-center logout-button text-no-wrap" v-if="home_timelines.length" >
+            <font-awesome-icon :icon="['fa', 'sign-out-alt']" style="font-size: 30px; cursor: pointer;" />
+          </div>
+        </v-col>
+        <v-col class="py-0">
+          <v-list-item color="rgba(0, 0, 0, .4)" dark>
+            <v-list-item-content>
+              <!-- <v-list-item-title class="title">{{current_user.name}}</v-list-item-title> -->
+              <!-- <v-list-item-title>TwiterID: {{current_user.id}}</v-list-item-title> -->
+            </v-list-item-content>
+          </v-list-item>
+        </v-col>
+      </v-row>
+    </v-card>
 
     <h2 class="mb-2" v-if="home_timelines.length">Twitter Timelines</h2>
 
@@ -186,10 +184,19 @@ export default {
   width: $nav-bar-width;
 }
 
+.user-information {
+  background-color: unset !important;
+  box-shadow: unset !important;
+}
+
+.user-information .row {
+  border-radius: 0.8em !important;
+  border: 1px solid #f2f2f9;
+}
+
 .user-information .v-list-item__content div {
   margin-right: 100px;
   width: 50%;
-  background-color: rgba(0,0,0, 0.3);
 }
 
 .user-information .avatar {
@@ -288,13 +295,13 @@ export default {
 .logout-button {
   position: absolute;
   right: 10px;
-  bottom: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
+  bottom: 7px;
+  color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .logout-button:hover {
-  background-color: rgb(241, 89, 194, 0.8);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .footer {
