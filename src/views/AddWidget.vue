@@ -12,9 +12,6 @@
     </div>
 
     <h2 class="mb-2" v-if="home_timelines.length">Twitter Timelines</h2>
-    <div @click="twiterLogout" >
-      <font-awesome-icon v-if="home_timelines.length" :icon="['fa', 'sign-out-alt']" style="font-size: 50px; cursor: pointer;" />
-    </div>
 
     <v-container class="twitter-content mt-4">
       <v-row>
@@ -74,6 +71,11 @@
             ></v-divider>
           </template>
         </v-list>
+      </v-row>
+      <v-row class="footer">
+        <div @click="twiterLogout" class="radius rounded pa-4 text-center logout-button text-no-wrap" v-if="home_timelines.length" >
+          <font-awesome-icon :icon="['fa', 'sign-out-alt']" style="font-size: 40px; cursor: pointer;" />
+        </div>
       </v-row>
     </v-container>
   </div>
@@ -225,6 +227,23 @@ export default {
     border: solid 1.8px $magenta-color;
     background-color: $magenta-color;
   }
+}
+
+.logout-button {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.0);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.footer {
+  position: relative;
+  min-height: 100px;
 }
 
 </style>
