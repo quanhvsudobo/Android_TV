@@ -1,18 +1,18 @@
 <template>
-  <div class="fl-v-aic" style="overflow: auto; max-height: 100vh">
+  <div v-focus-section:addwidget class="fl-v-aic" style="overflow: auto; max-height: 100vh">
     <h2>{{ message }}</h2>
     <!-- <div v-focus id="addButton" v-on:click="navigateTo">
       <ic-plus-solid width="100" height="100" />
     </div> -->
 
-    <div class="edit-add">
+    <div v-focus-section:addbutton class="edit-add">
       <div class="operation-buttons">
-        <div class="addBtn oval" v-focus v-on:click="navigateTo"></div>
+        <div class="addBtn oval" v-focus @sn:enter-up="navigateTo"></div>
       </div>
     </div>
 
-    <v-card class="mx-auto mb-4 user-information" max-width="60%" tile v-if="current_user">
-      <v-row align="end" class="p-1">
+    <v-card v-focus-section:userinfo class="mx-auto mb-4 user-information" max-width="60%" tile v-if="current_user">
+      <v-row v-focus align="end" class="p-1">
         <v-col align-self="start" class="pa-0 avatar" cols="2" md="2" sm="4">
           <v-avatar color="" size="60" tile>
             <v-img :src="current_user.profile_image_url"></v-img>
@@ -26,7 +26,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <div @click="twiterLogout" class="radius rounded pa-4 text-center logout-button text-no-wrap" v-if="home_timelines.length" >
+          <div @sn:enter-up="twiterLogout" v-focus class="radius rounded pa-4 text-center logout-button text-no-wrap" v-if="home_timelines.length" >
             <font-awesome-icon :icon="['fa', 'sign-out-alt']" style="font-size: 30px; cursor: pointer;" />
           </div>
         </v-col>
@@ -43,13 +43,14 @@
 
     <h2 class="mb-2" v-if="home_timelines.length">Twitter Timelines</h2>
 
-    <v-container class="twitter-content mt-4">
+    <v-container v-focus-section:hometweets class="twitter-content mt-4">
       <v-row>
         <v-list three-line>
           <template v-for="(item, index) in home_timelines">
             <v-list-item
               :key="item.id"
               class='tweet-item-list'
+              v-focus
             >
               <v-list-item-avatar size='50' rounded="false">
                 <v-img :src="item.user.profile_image_url"></v-img>
@@ -192,6 +193,10 @@ export default {
 .user-information .row {
   border-radius: 0.8em !important;
   border: 1px solid #f2f2f9;
+  &:focus {
+    border: solid 5.8px $magenta-color !important;
+    // background-color: $magenta-color !important;
+  }
 }
 
 .user-information .v-list-item__content div {
@@ -235,6 +240,10 @@ export default {
   background-color: #fff;
   padding: 2em 2em 1em 2em;
   margin-bottom: 2em;
+  &:focus {
+    border: solid 5.8px $magenta-color;
+    // background-color: $magenta-color;
+  }
 }
 
 .twitter-content .tweet-item-list:hover {
@@ -298,6 +307,10 @@ export default {
   bottom: 7px;
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  &:focus {
+    border: solid 1.8px $magenta-color;
+    background-color: $magenta-color;
+  }
 }
 
 .logout-button:hover {

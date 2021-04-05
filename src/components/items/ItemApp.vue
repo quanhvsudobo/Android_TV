@@ -1,7 +1,7 @@
 <template>
-  <div class="item-wrap" v-bind:class="{ 'no-style': noStyle }">
+  <div class="item-wrap" v-focus-section v-bind:class="{ 'no-style': noStyle }">
     <div class="item-inner">
-      <div class="clickme" :style="{ color }" v-wave>
+      <div class="clickme" v-focus @sn:enter-up="goTo(goto_url)"  :style="{ color }" v-wave>
           <div style="display: flex; justify-content: space-between; font-size:40px; padding-top:25px; margin-bottom: 55px;">
             <i v-bind:class="[activeClass, errorClass]" aria-hidden="true" style="align-items: flex-start;"></i>
           </div>
@@ -43,9 +43,19 @@ export default class ItemApp extends Vue {
 
   @Prop()
   icon!: string;
+
+  @Prop()
+  goto_url!: string;
   
   public activeClass = this.icon == "dog" || this.icon == "envelope"  ? "fa" : 'fab'
   public errorClass = 'fa-' + this.icon
+
+  goTo() {
+    if(this.goto_url.length > 0)
+    {
+      this.$router.push(this.goto_url);
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -88,6 +98,11 @@ export default class ItemApp extends Vue {
   cursor: pointer;
   user-select: none;
   position: relative !important;
+
+  &:focus {
+    border: solid 5.8px $magenta-color !important;
+    background-color: $magenta-color !important;
+  }
 }
 .no-style .clickme {
   box-shadow: none;

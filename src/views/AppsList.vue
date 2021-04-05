@@ -8,6 +8,7 @@
           class="col"
           label="Dog Tracker"
           icon="dog"
+          :goto_url="''"
           v-on:click.native="navigateTo('Dog Tracker', 0)"
         />
 
@@ -15,24 +16,28 @@
           class="col"
           label="Facebook"
           icon="facebook"
+          :goto_url="''"
           v-on:click.native="navigateTo('Facebook', 1)"
         />
         <ItemApp
           class="col"
           label="Twitter"
           icon="twitter"
+          :goto_url="'/twitter'"
           v-on:click.native="navigateTo('Twitter', 2)"
         />
         <ItemApp
           class="col"
           label="Google"
           icon="google"
+          :goto_url="''"
           v-on:click.native="navigateTo('Google', 3)"
         />
         <ItemApp
           class="col"
           label="Email"
           icon="envelope"
+          :goto_url="''"
           v-on:click.native="navigateTo('Email', 4)"
         />
       </div>
