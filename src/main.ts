@@ -20,16 +20,16 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.use(VWave, VueAxios, axios);
 
 const spatialCfg = {
-  straightOnly: false,
-  straightOverlapThreshold: 0.5,
-  rememberSource: false,
-  disabled: false,
-  defaultElement: "",
-  enterTo: "",
-  leaveFor: null,
-  restrict: "self-first",
-  tabIndexIgnoreList: "a, input, select, textarea, button, iframe, [contentEditable=true]",
-  navigableFilter: null,
+  // straightOnly: false,
+  // straightOverlapThreshold: 0.5,
+  // rememberSource: false,
+  // disabled: false,
+  // defaultElement: "",
+  // enterTo: "",
+  // leaveFor: null,
+  // restrict: "self-first",
+  // tabIndexIgnoreList: "a, input, select, textarea, button, iframe, [contentEditable=true]",
+  // navigableFilter: null,
   scrollOptions: { behavior: "smooth", block: "center" }
 };
 

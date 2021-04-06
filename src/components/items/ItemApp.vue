@@ -2,7 +2,7 @@
   <div class="item-wrap" v-focus-section v-bind:class="{ 'no-style': noStyle }">
     <div class="item-inner">
       <div class="clickme" v-focus @sn:enter-up="goTo(goto_url)"  :style="{ color }" v-wave>
-          <div style="display: flex; justify-content: space-between; font-size:40px; padding-top:25px; margin-bottom: 55px;">
+          <div style="display: flex; justify-content: space-between; font-size:40px; padding-top:25px; margin-bottom: 80px;">
             <i v-bind:class="[activeClass, errorClass]" aria-hidden="true" style="align-items: flex-start;"></i>
           </div>
           <div style="display: flex; justify-content: space-between;">
@@ -13,9 +13,6 @@
               <p style="margin-bottom: unset;"><i class="fa fa-angle-right"></i></p>
             </div>
           </div>
-          <p style="font-size: 13px;
-    color: #ff00ea;
-    text-align: initial;">Aktiv</p>
       </div>
     </div>
   </div>
