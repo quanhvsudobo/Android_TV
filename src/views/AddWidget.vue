@@ -26,7 +26,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <div @sn:enter-up="twiterLogout" v-focus class="radius rounded pa-4 text-center logout-button text-no-wrap" v-if="home_timelines.length" >
+          <div @sn:enter-up="twiterLogout" v-focus class="radius rounded pa-2 text-center logout-button text-no-wrap" v-if="home_timelines.length" >
             <font-awesome-icon :icon="['fa', 'sign-out-alt']" style="font-size: 30px; cursor: pointer;" />
           </div>
         </v-col>
@@ -41,7 +41,7 @@
       </v-row>
     </v-card>
 
-    <h2 class="mb-2" v-if="home_timelines.length">Twitter Timelines</h2>
+    <h2 class="home_timeline_title" v-if="home_timelines.length">Twitter Timelines</h2>
 
     <v-container v-focus-section:hometweets class="twitter-content mt-4">
       <v-row>
@@ -218,6 +218,10 @@ export default {
   color: rgba(255, 255, 255, 0.7);
 }
 
+.home_timeline_title {
+  margin: 30px;
+}
+
 .twitter-content .v-list {
   font-size: 1.4em;
   background-color: unset !important;
@@ -238,8 +242,8 @@ export default {
 .twitter-content .tweet-item-list {
   border-radius: $border-radius;
   background-color: #fff;
-  padding: 2em 2em 1em 2em;
-  margin-bottom: 2em;
+  padding: 0.3em 0.3em 0.2em 0.3em;
+  margin-bottom: 0.3em;
   &:focus {
     border: solid 5.8px $magenta-color;
     // background-color: $magenta-color;
@@ -303,8 +307,8 @@ export default {
 
 .logout-button {
   position: absolute;
-  right: 10px;
-  bottom: 7px;
+  right: 16px;
+  bottom: 14px;
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.2);
   &:focus {
