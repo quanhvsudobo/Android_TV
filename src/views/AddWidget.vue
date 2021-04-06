@@ -242,8 +242,8 @@ export default {
 .twitter-content .tweet-item-list {
   border-radius: $border-radius;
   background-color: #fff;
-  padding: 0.3em 0.3em 0.2em 0.3em;
-  margin-bottom: 0.3em;
+  padding: 0.5em 0.5em 0.3em 0.5em;
+  margin-bottom: 0.5em;
   &:focus {
     border: solid 5.8px $magenta-color;
     // background-color: $magenta-color;
