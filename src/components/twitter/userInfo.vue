@@ -1,28 +1,28 @@
 <template>
-  <v-card v-focus-section:userinfo class="mx-auto mb-4 user-information" max-width="60%" tile v-if="current_user">
+  <v-card v-focus-section:userinfo class="mx-auto mb-4 user-information" max-width="60%" tile v-if="user">
     <v-row v-focus align="center">
       <v-col class="avatar" cols="2" md="2" sm="4">
         <v-avatar color="" size="60" tile>
-          <v-img :src="current_user.profile_image_url"></v-img>
+          <v-img :src="user.profile_image_url"></v-img>
         </v-avatar>
       </v-col>
       <v-col class="" cols="10" md="10" sm="8">
         <v-list-item color="rgba(0, 0, 0, .4)" dark>
           <v-list-item-content>
-            <v-list-item-title class="title">{{current_user.name}} <span class="screen_name">(@{{current_user.screen_name}})</span></v-list-item-title>
-            <v-list-item-subtitle>TwiterID: {{current_user.id}}</v-list-item-subtitle>
+            <v-list-item-title class="title">{{user.name}} <span class="screen_name">(@{{user.screen_name}})</span></v-list-item-title>
+            <v-list-item-subtitle>TwiterID: {{user.id}}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
 
-        <div @sn:enter-up="twiterLogout" v-focus class="radius rounded pa-2 text-center logout-button text-no-wrap" v-if="current_user" >
+        <div @sn:enter-up="twiterLogout" v-focus class="radius rounded pa-2 text-center logout-button text-no-wrap" v-if="user" >
           <font-awesome-icon :icon="['fa', 'sign-out-alt']" style="font-size: 30px; cursor: pointer;" />
         </div>
       </v-col>
       <v-col class="py-0">
         <v-list-item color="rgba(0, 0, 0, .4)" dark>
           <v-list-item-content>
-            <!-- <v-list-item-title class="title">{{current_user.name}}</v-list-item-title> -->
-            <!-- <v-list-item-title>TwiterID: {{current_user.id}}</v-list-item-title> -->
+            <!-- <v-list-item-title class="title">{{user.name}}</v-list-item-title> -->
+            <!-- <v-list-item-title>TwiterID: {{user.id}}</v-list-item-title> -->
           </v-list-item-content>
         </v-list-item>
       </v-col>
@@ -40,7 +40,6 @@
   export default {
     data() {
       return {
-        current_user: null
       }
     },
     components: {
@@ -48,19 +47,19 @@
       // ItemApp
     },
     props: {
+      user: {
+        type: Object,
+        default: () => {}
+      }
     },
     computed: {
     },
     async mounted() {
-      let oauth_verifier = await localStorage.getItem('oauth_verifier');
-      if(oauth_verifier) {
-        await twitter.account_verify_credentials();
-        this.current_user = twiter_store.account_verify_credentials;
-      }
+
     },
     methods: {
       twiterLogout() {
-        this.current_user = null;
+        this.user = null;
         this.$emit('onLogout');
       }
     }

@@ -8,7 +8,15 @@
       </div>
     </div>
 
-    <user-info @onLogout="twiterLogout()" class="mt-4"></user-info>
+    <user-info @onLogout="twiterLogout" :user="current_user" ></user-info>
+
+    <h2 class="home_timeline_title" v-if="home_timelines.length">Boxes</h2>
+
+    <div class="d-flex box-wraper">
+      <twitter-box v-if="current_user" :user="current_user" class="box" :items="home_timelines"></twitter-box>
+      <twitter-box v-if="current_user" :user="current_user" class="box" :items="home_timelines"></twitter-box>
+      <twitter-box v-if="current_user" :user="current_user" class="box" :items="home_timelines"></twitter-box>
+    </div>
 
     <h2 class="home_timeline_title" v-if="home_timelines.length">Twitter Timelines</h2>
 
@@ -19,6 +27,7 @@
 <script>
 import { Component, Prop, PropSync, Ref, Vue } from "vue-property-decorator";
 import userInfo from "@/components/twitter/userInfo.vue";
+import TwitterBox from "@/components/twitter/Box.vue";
 import TimeLines from "@/components/twitter/TimeLines.vue";
 
 import router from "@/router/index";
@@ -36,7 +45,8 @@ export default {
   },
   components: {
     TimeLines,
-    userInfo
+    userInfo,
+    TwitterBox
   },
   props: {
     message: {
@@ -54,6 +64,9 @@ export default {
     if(oauth_verifier) {
       await twitter.home_timeline();
       this.home_timelines = twiter_store.tweets;
+
+      await twitter.account_verify_credentials();
+      this.current_user = twiter_store.account_verify_credentials;
     }
   },
   methods: {
@@ -64,6 +77,7 @@ export default {
     async twiterLogout() {
       await twitter.logout();
       this.home_timelines = [];
+      this.current_user = null;
     }
   }
 };
@@ -74,6 +88,11 @@ export default {
 <style lang="scss" scoped>
 .fl-v-aic::-webkit-scrollbar {
   display: none;
+}
+
+.box-wraper .box {
+  padding: 10px;
+  margin-top: 30px;
 }
 
 .main-navigation {
