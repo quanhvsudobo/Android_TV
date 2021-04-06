@@ -10,8 +10,6 @@ import Feed from "./feed";
 // import PetTracker from "./pet-tracker";
 // import BestFriend from "./best-friend";
 // import DashboardInfo from "./dashboard-info";
-
-import Session from "./session";
 // import HomeConfigurator from "./home-configurator";
 
 Vue.use(Vuex);
@@ -21,16 +19,6 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    // Widgets,
-    // Devices,
-    // Scenes,
-    // Weather,
-    Feed,
-    // Modal,
-    // Session,
-    // HomeConfigurator,
-    // PetTracker,
-    // BestFriend,
-    // DashboardInfo
+    Feed
   }
 });

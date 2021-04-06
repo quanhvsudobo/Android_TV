@@ -5,7 +5,6 @@ import AppsList from '../views/AppsList.vue'
 import TwitterLandPage from '../components/twitter/TwitterLandPage.vue'
 import TwitterAuthentication from '../components/twitter/TwitterAuth.vue'
 import TwitterCallback from '../components/twitter/TwitterCallback.vue'
-import LoginSuccessfully from '../views/LoginSuccessfully.vue'
 import WidgetGallery from '../views/WidgetGallery.vue'
 import WidgetDashboard from '../views/widget-dashboard.vue'
 
@@ -48,11 +47,6 @@ const routes: Array<RouteConfig> = [
     path: '/twitter/callback',
     name: 'Twitter Callback',
     component: TwitterCallback
-  },
-  {
-    path: '/loginsuccess',
-    name: 'Login Success',
-    component: LoginSuccessfully
   },
   {
     path: '/widget-gallery',
