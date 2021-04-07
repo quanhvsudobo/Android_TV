@@ -1,5 +1,5 @@
 <template>
-  <v-card v-focus-section:userinfo class="mx-auto mb-4 box-user-information" max-width="300px" tile v-if="user">
+  <v-card v-focus-section:userinfo class="mx-auto mb-4 box-user-information" max-width="340px" tile v-if="user">
     <v-row v-focus>
       <v-col class="avatar" cols="3" md="3" sm="3">
         <v-avatar color="" size="60" tile>
@@ -9,7 +9,7 @@
       <v-col class="user-info" cols="9" md="9" sm="9">
         <v-list-item color="rgba(0, 0, 0, .4)" dark>
           <v-list-item-content>
-            <v-list-item-title class="title">{{user.name}} <span class="screen_name"></span></v-list-item-title>
+            <v-list-item-title class="title">{{user.name}}<span class="screen_name"></span></v-list-item-title>
             <v-list-item-subtitle>@{{user.screen_name}}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -35,7 +35,7 @@
                 <span>&#183;</span>
                 <span class="time">6h</span>
               </v-list-item-title>
-              <v-list-item-subtitle v-html="item.text"></v-list-item-subtitle>
+              <v-list-item-subtitle class='twitter-text' v-html="item.text"></v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </div>
@@ -107,7 +107,13 @@
   }
 
   .box-user-information .user-info .v-list-item__content .title {
-    font-size: 20px !important;
+    font-size: 18px !important;
+    margin-right: 20px;
+  }
+
+  .box-user-information .user-info .v-list-item__content .v-list-item__subtitle {
+    font-size: 16px !important;
+    margin-right: 20px;
   }
 
   .box-user-information .avatar .v-image {
@@ -133,6 +139,14 @@
 
   .box-user-information .twitter-content .time {
     color: rgb(91, 112, 131);;
+  }
+
+  .box-user-information .twitter-content .tweets-title {
+    font-size: 16px !important;
+  }
+
+  .box-user-information .twitter-content .twitter-text {
+    font-size: 16px !important;
   }
 
   .box-user-information .twitter-content .tweet-item-list {
