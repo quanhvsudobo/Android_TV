@@ -13,9 +13,9 @@
     <h2 class="home_timeline_title" v-if="home_timelines.length">Boxes</h2>
 
     <div class="d-flex box-wraper">
-      <twitter-box v-if="current_user" :user="current_user" class="box" :items="home_timelines"></twitter-box>
-      <twitter-box v-if="current_user" :user="current_user" class="box" :items="home_timelines"></twitter-box>
-      <twitter-box v-if="current_user" :user="current_user" class="box" :items="home_timelines"></twitter-box>
+      <twitter-box v-if="current_user" @onLogout="twiterLogout" :user="current_user" class="box" :items="home_timelines"></twitter-box>
+      <twitter-box v-if="current_user" @onLogout="twiterLogout" :user="current_user" class="box" :items="home_timelines"></twitter-box>
+      <twitter-box v-if="current_user" @onLogout="twiterLogout" :user="current_user" class="box" :items="home_timelines"></twitter-box>
     </div>
 
     <h2 class="home_timeline_title" v-if="home_timelines.length">Twitter Timelines</h2>

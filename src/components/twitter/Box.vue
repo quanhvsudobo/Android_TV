@@ -1,12 +1,12 @@
 <template>
   <v-card v-focus-section:userinfo class="mx-auto mb-4 box-user-information" max-width="300px" tile v-if="user">
     <v-row v-focus>
-      <v-col class="avatar" cols="4" md="4" sm="4">
+      <v-col class="avatar" cols="3" md="3" sm="3">
         <v-avatar color="" size="60" tile>
           <v-img :src="user.profile_image_url"></v-img>
         </v-avatar>
       </v-col>
-      <v-col class="" cols="8" md="8" sm="8">
+      <v-col class="user-info" cols="9" md="9" sm="9">
         <v-list-item color="rgba(0, 0, 0, .4)" dark>
           <v-list-item-content>
             <v-list-item-title class="title">{{user.name}} <span class="screen_name"></span></v-list-item-title>
@@ -14,6 +14,9 @@
           </v-list-item-content>
         </v-list-item>
 
+        <div @sn:enter-up="twiterLogout" v-focus class="radius rounded pa-2 text-center logout-button text-no-wrap" v-if="user" >
+          <font-awesome-icon :icon="['fa', 'sign-out-alt']" style="font-size: 25px; cursor: pointer;" />
+        </div>
       </v-col>
       <v-col class="" cols="12" md="12" sm="12">
         <v-divider
@@ -98,6 +101,15 @@
     }
   }
 
+  .box-user-information .user-info {
+    position: relative;
+    padding: 5px;
+  }
+
+  .box-user-information .user-info .v-list-item__content .title {
+    font-size: 20px !important;
+  }
+
   .box-user-information .avatar .v-image {
     border-radius: 50%;
   }
@@ -138,10 +150,10 @@
     background-color: #f7f9fa;
   }
 
-  .logout-button {
+  .box-user-information .logout-button {
     position: absolute;
-    right: 16px;
-    bottom: 14px;
+    right: -15px;
+    bottom: 36px;
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.2);
     &:focus {
@@ -150,7 +162,7 @@
     }
   }
 
-  .logout-button:hover {
+  .box-user-information .logout-button:hover {
     background-color: rgba(255, 255, 255, 0.3);
   }
 </style>
