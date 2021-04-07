@@ -8,27 +8,25 @@
       </div>
     </div>
 
-    <user-info @onLogout="twiterLogout" :user="current_user" ></user-info>
+    <!-- <user-info @onLogout="twiterLogout" :user="current_user" ></user-info> -->
 
-    <h2 class="home_timeline_title" v-if="home_timelines.length">Boxes</h2>
+    <h2 class="home_timeline_title" v-if="home_timelines.length">My Widgets</h2>
 
     <div class="d-flex box-wraper">
       <twitter-box v-if="current_user" @onLogout="twiterLogout" :user="current_user" class="box" :items="home_timelines"></twitter-box>
-      <twitter-box v-if="current_user" @onLogout="twiterLogout" :user="current_user" class="box" :items="home_timelines"></twitter-box>
-      <twitter-box v-if="current_user" @onLogout="twiterLogout" :user="current_user" class="box" :items="home_timelines"></twitter-box>
     </div>
 
-    <h2 class="home_timeline_title" v-if="home_timelines.length">Twitter Timelines</h2>
+<!--     <h2 class="home_timeline_title" v-if="home_timelines.length">Twitter Timelines</h2>
 
-    <time-lines :items="home_timelines"></time-lines>
+    <time-lines :items="home_timelines"></time-lines> -->
   </div>
 </template>
 
 <script>
 import { Component, Prop, PropSync, Ref, Vue } from "vue-property-decorator";
-import userInfo from "@/components/twitter/userInfo.vue";
+// import userInfo from "@/components/twitter/userInfo.vue";
 import TwitterBox from "@/components/twitter/Box.vue";
-import TimeLines from "@/components/twitter/TimeLines.vue";
+// import TimeLines from "@/components/twitter/TimeLines.vue";
 
 import router from "@/router/index";
 import twitter from "@/auths/twitterauth/twitter";
@@ -44,8 +42,8 @@ export default {
     }
   },
   components: {
-    TimeLines,
-    userInfo,
+    // TimeLines,
+    // userInfo,
     TwitterBox
   },
   props: {
